@@ -1,31 +1,52 @@
+
 <div class="row ">
-    <div class="col-md-6 mx-auto mt-5">
-        <div class="card mx-auto">
-            <div class="card-body">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card mx-auto">
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-10 mx-auto mt-2">
+              <h1 class="primary"> Tweets</h1>
+              <input type="text" name="tweet" id="tweet" class="form-control txt" placeholder="What are you thinking?"  [(ngModel)]= "tweetText">
+             
+                <div class="card-body d-flex justify-content-around">
+                  <input type="text" name="url" id="urlimage" class="form-control divisor" placeholder="Insert your url here" [(ngModel)]= "urlText" >
+                   
+              
+                  <input type="submit" class ="btn btn-primary btn-sm divisor-send" value="{{ btntxtTweet }}" (click)="AgregarTweet()">
 
-                <form>
-
-
-                    <div class="row">
-                        <div class="col-md-10 mx-auto mt-2">
-                            <h1 class="primary"> Twwets</h1>
-                            <input type="tweet" name="tweet" id="tweet" class="form-control"
-                                placeholder="What are you thinking?">
-
-                            <div class="card">
-                                <div class="card-body d-flex justify-content-around">
-
-                                    <input type="urlimage" name="urlimage" id="urlimage" class="form-control divisor"
-                                        placeholder="Insert your url here">
-
-                                    <button type="button" value="SEND TWEET" class="btn btn-primary btn-sm divisor-send">SEND TWEET</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
+          </div>
+        </form>
+
+
+
+        <div class="container color-dark">
+          <div class = "col">
+  
+            <p>All tweets: ({{  itemCounttweet }})</p>
+          
+          </div>
         </div>
+        <div class="container color-ligth" [@tweets]="tweets.length ">
+ 
+          <div class=" mt-4">
+            <div class="card mx-auto">
+              <div class="card-body">
+
+                <div class="col">
+                 
+                  <p class="tweets-container" *ngFor="let tweet of tweets; let i = index" (click)="removeItemTweet(i)">
+                    {{tweet.description}}
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

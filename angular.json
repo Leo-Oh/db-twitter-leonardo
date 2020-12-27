@@ -17,6 +17,26 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "firebase",
+              "@angular/common/locales/fr",
+              "lodash/dropRight",
+              "@firebase/app",
+              "firebase/app",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config",
+              "@firebase/util",
+              "rxjs/operator/observeOn",
+              "rxjs/scheduler/queue",
+              "rxjs/Observable",
+              "rxjs/add/observable/fromPromise",
+              "rxjs/add/observable/of",
+              "rxjs/add/operator/switchMap"
+          ],
             "outputPath": "dist/twitter-leonardo",
             "index": "src/index.html",
             "main": "src/main.ts",

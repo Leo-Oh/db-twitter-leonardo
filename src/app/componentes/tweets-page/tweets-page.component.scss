@@ -1,8 +1,33 @@
 .divisor{
-    
-        width: 65%;
-     
+    width: 65%;
+    border: 0;
+    display: block;
+    padding: 1em 3em;
+    color:#003A61;
+    margin-bottom:  1em;
+    cursor:pointer;
 }
 .divisor-send{
     width: 30%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100% auto;
+}
+.col {
+    padding: .4em 1.3em;
+}
+
+input.txt{
+    border: 0;
+    padding: 1em;
+    width: 100%;
+    margin-bottom: .5em;
+}
+.tweets-container{
+    background: #b8e3ff;
+    padding: .5em;
+    font-weight: bold;
+    cursor: pointer;
 }
