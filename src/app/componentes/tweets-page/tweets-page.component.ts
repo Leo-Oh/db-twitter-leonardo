@@ -1,29 +1,10 @@
-/*
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-tweets-page',
-  templateUrl: './tweets-page.component.html',
-  styleUrls: ['./tweets-page.component.scss']
-})
-export class TweetsPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
-*/
-
 
 import { Component, OnInit } from '@angular/core';
 import {trigger,style,transition,animate,keyframes,query,stagger} from '@angular/animations';
 import { DataService } from 'src/app/servicios/data.service';
 import {Router} from '@angular/router';
-
+import { TwitterAPITweets } from 'src/app/servicios/twitterAPI';
 import { from } from 'rxjs';
-
 @Component({
   selector: 'app-tweets-page',
   templateUrl: './tweets-page.component.html',
@@ -59,56 +40,53 @@ export class TweetsPageComponent implements OnInit {
   btntxtTweet: string ="SEND TWEET";
   tweetText: string="";;
   urlText: string="";
+
+  tweets: any =[];
+ 
   
-  tweets=[];
 
   constructor(private _data: DataService,public router: Router) { }
+
 
   ngOnInit() {
     this.itemCounttweet = this.tweets.length;
     this._data.tweet.subscribe(res=> this.tweets = res);
     this._data.changeTweet(this.tweets);
 
-    this._data.getTweets()
-    .subscribe((data: any) => {
-      //alert(JSON.stringify(data.content));
+    //this._data.getTweets().subscribe(tweets=>{console.log(tweets)})
 
+    this._data.getTweets().subscribe(tweets=>{this.tweets=tweets})
+   /*
+    this._data.getTweets()
+     .subscribe((data: any) => {
+      //alert(JSON.stringify(data.content));
       this.tweets = data.content;
       this._data.changeTweet(this.tweets);
 
-    });
+    });*/
   }
-
- 
-
 
   AgregarTweet(){
 
     var payloadtweet = {
-     
+      user_id : 1000,
       tweetw : this.tweetText,
-      urlimage : this.urlText,
-      user_id : 1000
-      //user_id : this._data.getUsers
+      urlimage : this.urlText
       
     }
-  
-
     this._data.newTweet(payloadtweet)
     .subscribe((data: any) => {
 
       this.tweets.push(payloadtweet);
-
       this.tweetText='';
       this.urlText='';
-      //Nota: Falta el del usuario creo
-
       this.itemCounttweet=this.tweets.length;
       this._data.changeTweet(this.tweets);
+
    });
    
   }
-  
+
   
 
   removeItemTweet(i){
